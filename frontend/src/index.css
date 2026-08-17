@@ -1,0 +1,759 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=JetBrains+Mono:ital,wght@0,100..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Manrope", "Poppins", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* App theme mappings */
+  --color-warm-white: #FAF7F0; /* Soft, warm premium cream background */
+  --color-ivory: #EBE6D8;      /* Clean warm gold-beige division line */
+  --color-ceramic: #FDFCF7;    /* Bright surface paper */
+  --color-gold-light: #567A5E; /* Mapped to gorgeous brand forest green */
+  --color-charcoal: #1F1A12;   /* Dark, warm charcoal instead of cold black */
+  --color-blue-gray-medium: #6E7E75;
+  --color-gold-accent: #C8B89A; /* Beautiful warm gold highlight */
+}
+
+/* ==========================================================================
+   DYNAMIC THEMES SPECIFICATION
+   ========================================================================== */
+
+:root {
+  /* Default Theme (Swiss fallback) */
+  --theme-bg: #F4F4F5;
+  --theme-text-light: #18181B;
+  --theme-sidebar-bg: #18181B;
+  --theme-sidebar-border: #27272A;
+  --theme-sidebar-text: #F4F4F5;
+  --theme-sidebar-icon: #A1A1AA;
+  --theme-sidebar-hover-icon: #DC2626;
+  --theme-active-bg: #E4E4E7;
+  --theme-active-text: #18181B;
+  --theme-active-icon: #DC2626;
+  --theme-nav-bg: #FFFFFF;
+  --theme-nav-border: #E4E4E7;
+  --theme-nav-text: #18181B;
+  --theme-card-bg: #FFFFFF;
+  --theme-card-border: #E4E4E7;
+  --theme-card-text: #18181B;
+  --theme-card-sec-bg: #F4F4F5;
+  --theme-accent: #DC2626;
+  --theme-accent-hover: #C2410C;
+}
+
+/* 1. Forest Spruce (Beautiful premium natural spruce) */
+body.theme-forest, .theme-forest {
+  --theme-bg: #141010;
+  --theme-text-light: #FAF7F0;
+  --theme-sidebar-bg: #1B1B1B;
+  --theme-sidebar-border: #2D2525;
+  --theme-sidebar-text: #FAF7F0;
+  --theme-sidebar-icon: #C8B89A;
+  --theme-sidebar-hover-icon: #567A5E;
+  --theme-active-bg: #F7F5F2;
+  --theme-active-text: #141010;
+  --theme-active-icon: #567A5E;
+  --theme-nav-bg: #141010;
+  --theme-nav-border: #2D2525;
+  --theme-nav-text: #FAF7F0;
+  --theme-card-bg: #FFFFFF;
+  --theme-card-border: #EBE6D8;
+  --theme-card-text: #1F1A12;
+  --theme-card-sec-bg: #F8F6F0;
+  --theme-accent: #567A5E;
+  --theme-accent-hover: #436149;
+}
+
+/* 2. Swiss Minimalist (Standard corporate precision layout / red active) */
+body.theme-swiss, .theme-swiss {
+  --theme-bg: #F4F4F5;
+  --theme-text-light: #18181B;
+  --theme-sidebar-bg: #18181B;
+  --theme-sidebar-border: #27272A;
+  --theme-sidebar-text: #F4F4F5;
+  --theme-sidebar-icon: #A1A1AA;
+  --theme-sidebar-hover-icon: #DC2626;
+  --theme-active-bg: #E4E4E7;
+  --theme-active-text: #18181B;
+  --theme-active-icon: #DC2626;
+  --theme-nav-bg: #FFFFFF;
+  --theme-nav-border: #E4E4E7;
+  --theme-nav-text: #18181B;
+  --theme-card-bg: #FFFFFF;
+  --theme-card-border: #E4E4E7;
+  --theme-card-text: #18181B;
+  --theme-card-sec-bg: #F4F4F5;
+  --theme-accent: #18181B;
+  --theme-accent-hover: #27272A;
+}
+
+/* 3. Cosmic Charcoal (Metallo-neon dark) */
+body.theme-slate, .theme-slate {
+  --theme-bg: #0B0F19;
+  --theme-text-light: #F3F4F6;
+  --theme-sidebar-bg: #111827;
+  --theme-sidebar-border: #1F2937;
+  --theme-sidebar-text: #E5E7EB;
+  --theme-sidebar-icon: #9CA3AF;
+  --theme-sidebar-hover-icon: #38BDF8;
+  --theme-active-bg: #1F2937;
+  --theme-active-text: #FFFFFF;
+  --theme-active-icon: #38BDF8;
+  --theme-nav-bg: #111827;
+  --theme-nav-border: #1F2937;
+  --theme-nav-text: #FAFDFE;
+  --theme-card-bg: #1F2937;
+  --theme-card-border: #374151;
+  --theme-card-text: #F3F4F6;
+  --theme-card-sec-bg: #111827;
+  --theme-accent: #0EA5E9;
+  --theme-accent-hover: #0284C7;
+}
+
+/* 4. Warm Sepia/Notion (Pleasantly warm sand Sepia) */
+body.theme-warm, .theme-warm {
+  --theme-bg: #F5F2EB;
+  --theme-text-light: #2C2523;
+  --theme-sidebar-bg: #2C2523;
+  --theme-sidebar-border: #3E3532;
+  --theme-sidebar-text: #FDFBFA;
+  --theme-sidebar-icon: #CBB9B3;
+  --theme-sidebar-hover-icon: #D97706;
+  --theme-active-bg: #F1EDE4;
+  --theme-active-text: #2C2523;
+  --theme-active-icon: #D97706;
+  --theme-nav-bg: #FFFFFF;
+  --theme-nav-border: #E2DDD5;
+  --theme-nav-text: #2C2523;
+  --theme-card-bg: #FFFFFF;
+  --theme-card-border: #E2DDD5;
+  --theme-card-text: #2C2523;
+  --theme-card-sec-bg: #FBF9F6;
+  --theme-accent: #B45309;
+  --theme-accent-hover: #92400E;
+}
+
+/* Custom premium scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-card-sec-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-card-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-accent);
+}
+
+/* ==========================================================================
+   PREMIUM LIGHT WARM BEIGE, FOREST GREEN & GOLD SAAS SYSTEM
+   ========================================================================== */
+
+/* Overall Page Backdrop: Soft brand Charcoal Black */
+body, #app-root-layout, #student-portal-layout {
+  background-color: var(--theme-bg) !important; /* Dynamic Page Background */
+  color: var(--theme-text-light) !important;      /* Cozy soft readable light text default */
+  font-family: "Inter", sans-serif !important;
+}
+
+/* Headings with Poppins / Manrope */
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: "Manrope", "Poppins", sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--theme-card-text) !important;
+  letter-spacing: -0.02e;
+}
+
+/* ==========================================================================
+   SIDEBAR & NAVIGATION STYLE REDESIGN (Lighter Black, active beige)
+   ========================================================================== */
+
+/* Elegant lighter black sidebar */
+#sidebar {
+  background-color: var(--theme-sidebar-bg) !important; /* Dynamic sidebar background */
+  border-right: 1px solid var(--theme-sidebar-border) !important;
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Sidebar label & body fonts styled with beige */
+#sidebar * {
+  color: var(--theme-sidebar-text) !important; /* Beige/Cream text */
+}
+
+/* Sidebar head titles */
+#sidebar h2, #sidebar h3, #sidebar h4 {
+  color: var(--theme-sidebar-text) !important;
+}
+
+#sidebar h1, #sidebar h1 * {
+  color: var(--theme-sidebar-text) !important; /* Elegant beige/cream for Aspire Residency brand */
+}
+
+/* Overrides to ensure the green brand logo campus tree icon and paths are beautifully green */
+#sidebar div.bg-warm-white {
+  background-color: var(--theme-sidebar-text) !important; /* Warm light background */
+}
+
+#sidebar svg.text-\[\#567A5E\],
+#sidebar svg.text-\[\#567A5E\] * {
+  color: var(--theme-active-icon) !important;
+  stroke: var(--theme-active-icon) !important;
+}
+
+#sidebar svg.text-\[\#567A5E\] circle.text-\[\#567A5E\] {
+  color: var(--theme-active-icon) !important;
+  fill: var(--theme-active-icon) !important;
+}
+
+#sidebar svg.text-\[\#567A5E\] circle.text-\[\#47664f\] {
+  color: var(--theme-active-icon) !important;
+  fill: var(--theme-active-icon) !important;
+}
+
+/* Sidebar user footer segment matching lighter black theme instead of light bg-slate-50 */
+#sidebar .bg-slate-50 {
+  background-color: rgba(255, 255, 255, 0.05) !important; /* Adaptive translucent tint */
+  border-top: 1px solid var(--theme-sidebar-border) !important;
+}
+
+#sidebar .bg-slate-50 * {
+  color: var(--theme-sidebar-text) !important; /* Elegant beige/cream text */
+}
+
+/* Distinct high contrast names on the footer profile card */
+#sidebar .bg-slate-50 h4 {
+  color: var(--theme-sidebar-text) !important; /* Clear user name */
+}
+
+#sidebar .bg-slate-50 p {
+  color: var(--theme-active-icon) !important; 
+}
+
+/* User footer signout button */
+#sidebar .bg-slate-50 button:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+#sidebar .bg-slate-50 button svg {
+  color: var(--theme-sidebar-icon) !important; 
+  transition: all 0.2s ease !important;
+}
+
+#sidebar .bg-slate-50 button:hover svg {
+  color: var(--theme-active-icon) !important; /* Highlight on hover */
+}
+
+/* Red-alert notice box adaptation inside dark sidebar */
+#sidebar .bg-red-50\/50,
+#sidebar .bg-red-50 {
+  background-color: rgba(220, 38, 38, 0.08) !important;
+  border: 1px solid rgba(220, 38, 38, 0.2) !important;
+}
+
+#sidebar .bg-red-50\/50 h4,
+#sidebar .bg-red-50 h4 {
+  color: #C8B89A !important;
+}
+
+#sidebar .bg-red-50\/50 p,
+#sidebar .bg-red-50 p {
+  color: #FAF7F0 !important;
+}
+
+/* Sidebar navigational link styling */
+#sidebar button {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  color: var(--theme-sidebar-text) !important;
+}
+
+#sidebar button svg {
+  color: var(--theme-sidebar-icon) !important; /* Muted icons for superb aesthetic balance */
+  transition: all 0.2s ease !important;
+}
+
+/* Hover state: slight backdrop lift */
+#sidebar button:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--theme-sidebar-text) !important;
+}
+
+#sidebar button:hover svg {
+  color: var(--theme-sidebar-hover-icon) !important; /* Hover reveals primary theme color */
+}
+
+/* ACTIVE SIDEBAR ITEM: Adaptive active styling */
+#sidebar button.bg-gold-light\/15,
+#sidebar button[id*="active"],
+#sidebar button.text-charcoal,
+#sidebar button.font-semibold.bg-gold-light\/15 {
+  background-color: var(--theme-active-bg) !important;  /* Dynamic background */
+  color: var(--theme-active-text) !important;             /* Dynamic text */
+  font-weight: 700 !important;
+  border-radius: 12px !important;
+  border-left: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Dynamic sub-elements for active sidebar */
+#sidebar button.bg-gold-light\/15 *,
+#sidebar button[id*="active"] *,
+#sidebar button.text-charcoal *,
+#sidebar button.font-semibold.bg-gold-light\/15 * {
+  color: var(--theme-active-text) !important;             
+}
+
+#sidebar button.bg-gold-light\/15 svg,
+#sidebar button[id*="active"] svg,
+#sidebar button.text-charcoal svg,
+#sidebar button.font-semibold.bg-gold-light\/15 svg {
+  color: var(--theme-active-icon) !important;             
+}
+
+/* Top Navbar / Header Area (Matte Black with Beige details) */
+#top-navbar, header.sticky {
+  background-color: var(--theme-nav-bg) !important;  
+  border-bottom: 1px solid var(--theme-nav-border) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+#top-navbar *, header.sticky * {
+  color: var(--theme-nav-text) !important;             
+}
+
+/* Real-time system clock text and icon visibility override */
+#top-navbar .bg-warm-white,
+#top-navbar .bg-warm-white *,
+header.sticky .bg-warm-white,
+header.sticky .bg-warm-white * {
+  color: var(--theme-active-text) !important;             
+  background-color: var(--theme-active-bg) !important;
+}
+
+#top-navbar .text-charcoal, header.sticky .text-charcoal {
+  color: var(--theme-nav-text) !important;
+}
+
+#top-navbar .font-mono, header.sticky .font-mono {
+  color: var(--theme-sidebar-icon) !important;             
+}
+
+#top-navbar button, header.sticky button {
+  background-color: rgba(255, 255, 255, 0.04) !important;  
+  border: 1px solid var(--theme-nav-border) !important;
+  color: var(--theme-nav-text) !important;
+}
+
+#top-navbar button:hover, header.sticky button:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--theme-sidebar-border) !important;      
+}
+
+#top-navbar button *, header.sticky button * {
+  color: var(--theme-nav-text) !important;
+}
+
+/* Quick Actions Dropdown Text Styling Overrides to prevent text from being invisible */
+#top-navbar #quick-actions-dropdown,
+#top-navbar #quick-actions-dropdown *,
+#top-navbar #quick-actions-dropdown button,
+#top-navbar #quick-actions-dropdown button * {
+  color: #111111 !important; /* Force text to be solid black for high contrast readability */
+}
+
+#top-navbar #quick-actions-dropdown button {
+  background-color: #FFFFFF !important;
+  border-style: none !important;
+  border-width: 0 !important;
+  transition: background-color 0.15s ease !important;
+}
+
+#top-navbar #quick-actions-dropdown button:hover,
+#top-navbar #quick-actions-dropdown button:hover * {
+  background-color: #FAF7F0 !important; /* Soft warm light beige background on hover */
+  color: #000000 !important; /* Pure black text on active highlight */
+}
+
+/* Notifications Dropdown Overrides to ensure high contrast, solid dark text */
+#top-navbar #notifications-dropdown,
+#top-navbar #notifications-dropdown *,
+#top-navbar #notifications-dropdown button,
+#top-navbar #notifications-dropdown button * {
+  color: #1a1a1a !important; /* High contrast charcoal/black for text readability */
+}
+
+#top-navbar #notifications-dropdown .text-blue-gray-medium\/70 {
+  color: #666666 !important; /* Darker gray for readable timestamps */
+}
+
+#top-navbar #notifications-dropdown button {
+  background-color: transparent !important;
+  border-style: none !important;
+  border-width: 0 !important;
+  box-shadow: none !important;
+  padding: 4px 8px !important;
+}
+
+#top-navbar #notifications-dropdown button:hover,
+#top-navbar #notifications-dropdown button:hover * {
+  color: #000000 !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ==========================================================================
+   COZY WARM BEIGE & WHITE FLOATING CONTENT PLATES (Maximum eye comfort)
+   ========================================================================== */
+
+/* General Main Stage card layout, forms and charts */
+main .rounded-xl,
+main .rounded-lg,
+main form,
+main .bg-white,
+main .bg-zinc-50,
+main .bg-slate-50,
+main .border,
+main [class*="bg-white"],
+main [class*="bg-zinc"],
+main [class*="bg-slate"],
+#student-portal-layout main .rounded-xl,
+#student-portal-layout main .rounded-lg,
+#student-portal-layout main .bg-white,
+#student-portal-layout main form,
+.workspace-card,
+.dashboard-card,
+.card,
+.table-container,
+.chart-container,
+table {
+  background-color: var(--theme-card-bg) !important;  /* Crisp high-end layout tiles */
+  color: var(--theme-card-text) !important;             /* Cozy soft black text */
+  border: 1px solid var(--theme-card-border) !important;   /* Elegant warm borders */
+  border-radius: 16px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03) !important; 
+}
+
+/* Secondary detail areas or alerts inside layout cards */
+main .bg-warm-white\/55,
+main .bg-warm-white\/45,
+main .bg-warm-white\/75,
+main .bg-slate-100,
+main .bg-zinc-100,
+main .bg-slate-50,
+main .border-zinc-200,
+main .border-slate-200,
+main .border-ivory,
+#student-portal-layout main .bg-warm-white\/55,
+#student-portal-layout main .bg-warm-white\/45,
+#student-portal-layout main .bg-warm-white\/75 {
+  background-color: var(--theme-card-sec-bg) !important; /* Soft sand beige */
+  border-color: var(--theme-card-border) !important;
+}
+
+/* Ensure maximum text readability */
+main p,
+main span,
+main label,
+main strong,
+main td,
+main th,
+main p *,
+main span *,
+main label *,
+main strong *,
+main li,
+main a:not(.btn-primary),
+#student-portal-layout main p,
+#student-portal-layout main span,
+#student-portal-layout main label,
+#student-portal-layout main strong,
+#student-portal-layout main td,
+#student-portal-layout main th,
+#student-portal-layout main p *,
+#student-portal-layout main span *,
+#student-portal-layout main label *,
+#student-portal-layout main strong * {
+  color: var(--theme-card-text) !important; /* Solid readability charcoal */
+}
+
+/* Exception card titles and structural widgets */
+main h1, main h2, main h3, main h4, main h5, main h6,
+main h1 *, main h2 *, main h3 *, main h4 *, main h5 *, main h6 *,
+#student-portal-layout main h1, #student-portal-layout main h2, #student-portal-layout main h3, #student-portal-layout main h4 {
+  font-family: "Manrope", sans-serif !important;
+  color: var(--theme-card-text) !important;
+  font-weight: 700 !important;
+}
+
+/* Sub-headings and descriptive text */
+.text-slate-500, .text-zinc-500, .text-gray-500 {
+  color: #6E7E75 !important; /* Warm moss gray detail font */
+}
+
+/* ==========================================================================
+   BUTTONS, OVERLAYS AND INTERACTIVES (Forest Green & Muted Gold)
+   ========================================================================== */
+
+/* Active Primary Utility Button  */
+button.bg-charcoal,
+button[type="submit"],
+.btn-primary,
+button.bg-slate-900,
+#quick-actions-btn,
+button.bg-zinc-900 {
+  background-color: var(--theme-accent) !important;
+  color: var(--theme-sidebar-text) !important; /* Soft warm text */
+  border: 1px solid var(--theme-accent) !important;
+  border-radius: 12px !important;
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 0.65rem 1.25rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+button.bg-charcoal:hover,
+button[type="submit"]:hover,
+.btn-primary:hover,
+button.bg-slate-900:hover,
+#quick-actions-btn:hover,
+button.bg-zinc-900:hover {
+  background-color: var(--theme-accent-hover) !important; /* Deep transition stroke */
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Lock text inside primary buttons */
+button.bg-charcoal *,
+button[type="submit"] *,
+.btn-primary *,
+#quick-actions-btn * {
+  color: var(--theme-sidebar-text) !important;
+}
+
+/* Secondary Button or Neutral Options */
+main button:not(.btn-primary):not([type="submit"]):not(.bg-charcoal):not(.bg-slate-900):not(.bg-zinc-900) {
+  background-color: var(--theme-card-bg) !important;
+  border: 1.5px solid var(--theme-card-border) !important;
+  color: var(--theme-card-text) !important;
+  border-radius: 10px !important;
+  transition: all 0.2s ease !important;
+}
+
+main button:not(.btn-primary):not([type="submit"]):not(.bg-charcoal):not(.bg-slate-900):not(.bg-zinc-900):hover {
+  background-color: var(--theme-card-sec-bg) !important; 
+  border-color: var(--theme-accent) !important;
+}
+
+main button:not(.btn-primary):not([type="submit"]):not(.bg-charcoal):not(.bg-slate-900):not(.bg-zinc-900) * {
+  color: var(--theme-card-text) !important;
+}
+
+/* Modals & Pop-up Dialogs */
+[role="dialog"], .modal, .modal-content {
+  background-color: #FFFFFF !important;
+  color: #1F1A12 !important;
+  border: 1.5px solid #EBE6D8 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 50px rgba(31, 26, 18, 0.15) !important;
+}
+
+[role="dialog"] *, .modal *, .modal-content * {
+  color: #1F1A12 !important;
+}
+
+/* Inputs, Selectors and Form Editing Fields */
+input, select, textarea {
+  background-color: #FFFFFF !important;
+  border: 1.5px solid #EBE6D8 !important;
+  border-radius: 10px !important;
+  color: #1F1A12 !important;
+  padding: 0.65rem 0.85rem;
+  font-family: "Inter", sans-serif !important;
+}
+
+/* Ensure padding-left and padding-right utility classes are respected for icon integration */
+input.pl-10, textarea.pl-10 {
+  padding-left: 2.5rem !important;
+}
+input.pr-10, textarea.pr-10 {
+  padding-right: 2.5rem !important;
+}
+input.pr-4, textarea.pr-4 {
+  padding-right: 1.0rem !important;
+}
+
+/* Fix overlapping icons inside search bars or keyword inputs */
+.relative input[id*="search"], 
+.relative input[placeholder*="Search"],
+.relative input[class*="pl-8"],
+.relative input[class*="pl-9"],
+.relative input[class*="pl-10"],
+input[id*="search"],
+input[placeholder*="Search"] {
+  padding-left: 2.5rem !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #567A5E !important; /* Forest Green Focus */
+  box-shadow: 0 0 0 3px rgba(86, 122, 94, 0.12) !important;
+  outline: none !important;
+}
+
+/* SVGs and Icons inside layout elements maps to Forest Green */
+main svg,
+#student-portal-layout main svg {
+  color: #567A5E !important;
+}
+
+/* Small highlight alerts, notifications, and badges mapped to rich Muted Gold (#C8B89A) */
+span.rounded-full, 
+.badge, 
+[class*="badge"],
+[class*="status-badge"] {
+  background-color: rgba(200, 184, 154, 0.18) !important; /* gold tint background */
+  color: #8C7C5F !important;                             /* dark bronze gold text */
+  border: 1.5px solid #C8B89A !important;                 /* Muted golden contour border */
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  padding: 0.2rem 0.75rem !important;
+}
+
+/* Tables and columns with gold/green structural rhythm */
+table, tr, td, th {
+  border-color: #F0EDE4 !important;
+  color: #1F1A12 !important;
+}
+
+th {
+  background-color: #F4EFEB !important; /* Warm gold-tint gray table headers */
+  font-family: "Manrope", sans-serif !important;
+  font-weight: 700 !important;
+}
+
+tr:hover td {
+  background-color: rgba(86, 122, 94, 0.04) !important; /* Soft forest green highlight on track rows */
+}
+
+/* Prevent icon force-color issues in generic actions */
+button svg, button span, a svg {
+  color: inherit !important;
+}
+
+/* Clean success state tracking (maps to forest green) */
+.text-emerald-600 {
+  color: #567A5E !important;
+}
+
+/* Alert notifications states mapping to golden-alert warm elements */
+.border-red-100, .bg-red-50, .text-red-800 {
+  border-color: #C8B89A !important;
+  background-color: rgba(200, 184, 154, 0.1) !important;
+  color: #1F1A12 !important;
+}
+
+/* ==========================================================================
+   EXCLUSIVE PREMIUM LOGIN PAGE STYLING (Charcoal Black backdrop, beige form)
+   ========================================================================== */
+
+#login-container-root {
+  background-color: #141010 !important; /* Charcoal Black backdrop */
+}
+
+/* Headings outside the form card on the login page */
+#login-container-root h1,
+#login-container-root h2 {
+  color: #FAF7F0 !important; /* Crisp contrast white display headings */
+}
+
+#login-container-root p {
+  color: #C8B89A !important; /* Pale elegant gold sub-detail lines */
+}
+
+/* Ensure the login form card is styled with supreme contrast warm beige progress plates */
+#login-container-root .rounded-2xl {
+  background-color: #F7F5F2 !important;  /* Warm Beige form box card */
+  color: #1F1A12 !important;             /* Cozy readable charcoal text */
+  border: 1px solid #EBE6D8 !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Text and details inside the warm beige card */
+#login-container-root .rounded-2xl * {
+  color: #1F1A12 !important;             /* Safe lock matte black text */
+}
+
+#login-container-root .rounded-2xl h1,
+#login-container-root .rounded-2xl h2,
+#login-container-root .rounded-2xl h3 {
+  color: #1F1A12 !important;
+}
+
+/* Inputs and interactive elements inside login form card */
+#login-container-root input,
+#login-container-root select {
+  background-color: #FFFFFF !important;
+  border: 1.5px solid #EBE6D8 !important;
+  color: #1F1A12 !important;
+}
+
+#login-container-root input:focus,
+#login-container-root select:focus {
+  border-color: #567A5E !important;
+  box-shadow: 0 0 0 3px rgba(86, 122, 94, 0.15) !important;
+}
+
+/* Tab selector backgrounds and items */
+#login-container-root .bg-warm-white {
+  background-color: #FAF7F0 !important; /* Soft warm golden-sandy backdrop */
+  border: 1px solid #EBE6D8 !important;
+}
+
+/* Active tab selection: clean forest-green pill */
+#login-container-root button.bg-white,
+#login-container-root button.shadow-xs,
+#login-container-root button.text-charcoal {
+  background-color: #567A5E !important; /* Active forest green role highlight */
+  color: #FAF7F0 !important;             /* Cream text */
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(86, 122, 94, 0.18) !important;
+}
+
+/* Color correction for active elements inside tabs */
+#login-container-root button.bg-white * {
+  color: #FAF7F0 !important;
+}
+
+/* Login submit button custom priority forest green lock */
+#login-container-root button[type="submit"] {
+  background-color: #567A5E !important;
+  color: #FAF7F0 !important;
+}
+
+#login-container-root button[type="submit"]:hover {
+  background-color: #436149 !important;
+}
+
+#login-container-root button[type="submit"] * {
+  color: #FAF7F0 !important;
+}
+
+/* Helper text */
+#login-container-root .text-slate-500,
+#login-container-root .text-gray-500,
+#login-container-root .text-zinc-500 {
+  color: #6E7E75 !important;
+}

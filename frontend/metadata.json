@@ -1,0 +1,6 @@
+{
+  "name": "Hostel Inventory Management",
+  "description": "A comprehensive administration dashboard to manage rooms, student allotments, assets inventory, mess supplies, and maintenance work orders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
