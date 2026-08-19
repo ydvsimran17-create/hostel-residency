@@ -103,7 +103,7 @@ export const StudentsPage: React.FC = () => {
 
     const dupId = students.find(
       (s) =>
-        s.studentId.toUpperCase().trim() === studentId.toUpperCase().trim() &&
+(s.studentId || '').toUpperCase().trim() === studentId.toUpperCase().trim() &&
         (!editingStudent || s.id !== editingStudent.id)
     );
     if (dupId) {
