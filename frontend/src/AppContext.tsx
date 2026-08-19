@@ -356,9 +356,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   }, []);
 
-  useEffect(() => {
+// Refetch all data whenever someone logs in (currentUser changes from
+// null to a session) — not just once when the app first mounts, since at
+// mount time nobody is logged in yet and every request would fail (401).
+useEffect(() => {
+  if (currentUser) {
     void refreshAllData();
-  }, [refreshAllData]);
+  }
+}, [currentUser, refreshAllData]);
 
   const addLog = (action: string, type: 'info' | 'warning' | 'success' = 'info') => {
     const now = new Date();

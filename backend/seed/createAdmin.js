@@ -1,15 +1,16 @@
 /**
- * One-time script to create the first admin ("Head") account.
+ * One-time script to create a login account for any role (admin/staff/student).
  *
  * Public self-registration is disabled (POST /api/auth/register now requires
- * an existing admin to be logged in), so this script bootstraps that very
- * first account by writing directly to the database.
+ * an existing admin to be logged in), so this script bootstraps accounts by
+ * writing directly to the database.
  *
  * Usage (run from the backend/ folder, with your .env already set up):
- *   node seed/createAdmin.js "Jane Superintendent" admin@hostel.edu "SomeStrongPassword123"
+ *   node seed/createAdmin.js "Jane Superintendent" admin@hostel.edu "SomeStrongPassword123" admin
+ *   node seed/createAdmin.js "John Student" student@hostel.edu "SomeStrongPassword123" student
  *
- * If you don't pass arguments, it falls back to the defaults below —
- * change them first, or just always pass your own values on the command line.
+ * The 4th argument (role) is optional and defaults to "admin" if omitted.
+ * Valid roles: admin, staff, student
  */
 
 require('dotenv').config();
@@ -18,11 +19,12 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 async function main() {
-  const [, , nameArg, emailArg, passwordArg] = process.argv;
+  const [, , nameArg, emailArg, passwordArg, roleArg] = process.argv;
 
   const name = nameArg || 'Admin';
   const email = (emailArg || 'admin@hostel.edu').toLowerCase();
   const password = passwordArg || 'ChangeMe123';
+  const role = ['admin', 'staff', 'student'].includes(roleArg) ? roleArg : 'admin';
 
   const mongoURI = process.env.MONGO_URI?.trim();
   if (!mongoURI) {
@@ -42,23 +44,23 @@ async function main() {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const admin = await User.create({
+  const user = await User.create({
     name,
     email,
     password: hashedPassword,
-    role: 'admin',
+    role,
   });
 
-  console.log('Admin account created:');
-  console.log(`  Name:  ${admin.name}`);
-  console.log(`  Email: ${admin.email}`);
-  console.log(`  Role:  ${admin.role}`);
+  console.log('Account created:');
+  console.log(`  Name:  ${user.name}`);
+  console.log(`  Email: ${user.email}`);
+  console.log(`  Role:  ${user.role}`);
   console.log('You can now log in on the website with this email and the password you provided.');
 
   await mongoose.disconnect();
 }
 
 main().catch((error) => {
-  console.error('Failed to create admin:', error.message);
+  console.error('Failed to create account:', error.message);
   process.exit(1);
 });
