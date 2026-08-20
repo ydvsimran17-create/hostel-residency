@@ -71,9 +71,10 @@ const updateRoom = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const room = await Room.findByIdAndUpdate(id, req.body, {
+   const room = await Room.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
+      context: 'query',
     });
 
     if (!room) {

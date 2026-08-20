@@ -23,13 +23,16 @@ const roomSchema = new mongoose.Schema(
       required: [true, 'Capacity is required'],
       min: [1, 'Capacity must be at least 1'],
     },
-    occupiedBeds: {
+  occupiedBeds: {
       type: Number,
       default: 0,
       min: [0, 'Occupied beds cannot be negative'],
       validate: {
-        validator: function (value) {
-          return value <= this.capacity;
+        validator: async function (value) {
+          const capacity = this.capacity !== undefined
+            ? this.capacity
+            : (await this.model.findOne(this.getQuery())).capacity;
+          return value <= capacity;
         },
         message: 'Occupied beds cannot exceed room capacity',
       },
